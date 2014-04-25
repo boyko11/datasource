@@ -47,35 +47,25 @@ public class DataSourceStatsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    response.setContentType("text/html");
-	    PrintWriter out = response.getWriter();
-	    
-	    out.println("<html>");
-	    out.println("<head>");
-	    out.println("<title>Hola</title>");
-	    out.println("</head>");
-	    out.println("<body bgcolor=\"white\">");
-	    out.println("<br/>Active: " + ds.getNumActive());
-	    out.println("<br/>MaxActive: " + ds.getMaxActive());
-	    out.println("<br/>Idle: " + ds.getNumIdle());
-	    out.println("<br/>MinIdle: " + ds.getMinIdle());
-	    out.println("<br/>MaxIdle: " + ds.getMaxIdle());
-	    out.println("<br/>InitialSize: " + ds.getInitialSize());
-	    out.println("<br/>MaxWait: " + ds.getMaxWait());
-	    out.println("<br/>DefaultCatalog: " + ds.getDefaultCatalog());
-	    out.println("<br/>getDefaultTransactionIsolation: " + ds.getDefaultTransactionIsolation());
-		out.println("<br/>getMaxOpenPreparedStatements: " + ds.getMaxOpenPreparedStatements());
-		out.println("<br/>getMinEvictableIdleTimeMillis: " + ds.getMinEvictableIdleTimeMillis());
-		out.println("<br/>getRemoveAbandonedTimeout: " + ds.getRemoveAbandonedTimeout());
-		out.println("<br/>getNumTestsPerEvictionRun: " + ds.getNumTestsPerEvictionRun());
-		out.println("<br/>getRemoveAbandonedTimeout: " + ds.getRemoveAbandonedTimeout());
-		out.println("<br/>getTimeBetweenEvictionRunsMillis: " + ds.getTimeBetweenEvictionRunsMillis());
-		out.println("<br/>getValidationQuery: " + ds.getValidationQuery());
-		out.println("<br/>getValidationQueryTimeout: " + ds.getValidationQueryTimeout());
-		out.println("<br/>getLogAbandoned: " + ds.getLogAbandoned());
-		out.println("<br/>getRemoveAbandoned: " + ds.getRemoveAbandoned());
-	    out.println("</body>");
-	    out.println("</html>");
+		request.setAttribute("active", ds.getNumActive());
+		request.setAttribute("max-active", ds.getMaxActive());
+		request.setAttribute("num-idle", ds.getNumIdle());
+		request.setAttribute("min-idle", ds.getMinIdle());
+		request.setAttribute("max-idle", ds.getMaxIdle());
+		request.setAttribute("initial-size", ds.getInitialSize());
+		request.setAttribute("max-wait", ds.getMaxWait());
+		request.setAttribute("default-catalog", ds.getDefaultCatalog());
+		request.setAttribute("default-transaction-isolation", ds.getDefaultTransactionIsolation());
+		request.setAttribute("max-open-prepared-statements", ds.getMaxOpenPreparedStatements());
+		request.setAttribute("min-evictable-idle-time", ds.getMinEvictableIdleTimeMillis());
+		request.setAttribute("remove-abandoned-timeout", ds.getRemoveAbandonedTimeout());
+		request.setAttribute("num-tests-per-eviction-run", ds.getNumTestsPerEvictionRun());
+		request.setAttribute("time-between-eviction-runs", ds.getTimeBetweenEvictionRunsMillis());
+		request.setAttribute("validation-query", ds.getValidationQuery());
+		request.setAttribute("validation-query-timeout", ds.getValidationQueryTimeout());
+		request.setAttribute("log-abandoned", ds.getLogAbandoned());
+		request.setAttribute("remove-abandoned", ds.getRemoveAbandoned());
+		request.getRequestDispatcher("/data-source-stats.jsp").forward(request, response);
 	}
 
 	/**
