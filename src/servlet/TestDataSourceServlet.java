@@ -72,15 +72,6 @@ public class TestDataSourceServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-
-	    
-	    out.println("<html>");
-	    out.println("<head>");
-	    out.println("<title>Hola</title>");
-	    out.println("</head>");
-	    out.println("<body bgcolor=\"white\">");
-	    out.println("</body>");
-	    out.println("</html>");
 	}
 
 	/**
